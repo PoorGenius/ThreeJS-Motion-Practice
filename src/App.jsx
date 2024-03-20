@@ -1,5 +1,6 @@
 import { useState, useRef } from "react"
 import { motion } from "framer-motion"
+import { Environment } from "@react-three/drei"
 
 import { Canvas } from "@react-three/fiber"
 import { OrbitControls } from "@react-three/drei"
@@ -41,10 +42,13 @@ function App() {
         initial="hidden"
       >
         <Canvas
-          camera={{ fov: 125 }}>
+
+        >
           <ambientLight intensity={1} />
           <pointLight position={[10, 10, 10]} />
-          <Cube size={[5, 5, 5]} transform={transform} color={cubeColor} />
+          <Environment preset="studio" background={false} />
+
+          <Cube size={[3, 3, 3]} transform={transform} color={cubeColor} />
           <OrbitControls
             ref={orbitControls}
             enableZoom={false}
@@ -52,15 +56,17 @@ function App() {
           />
         </Canvas>
       </motion.div >
-      <div className="w-[250px] h-[250px] text-center">
-        <h2>Define Cube Colors</h2>
+      <div className="w-[250px] h-[250px] flex flex-col items-center">
         <motion.div
           variants={slideInVariants("bottom")}
           animate="visible"
           initial="hidden">
+          <h2 className="text-center">Define Cube Colors</h2>
           <SketchPicker color={cubeColor} onChange={handleColorChange}
             disableAlpha
-            presetColors={[]} />
+            presetColors={[]}
+          //center sketchpicker
+          />
         </motion.div>
       </div>
     </div>
