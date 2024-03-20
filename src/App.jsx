@@ -44,10 +44,6 @@ function App() {
         <Canvas
 
         >
-          <ambientLight intensity={1} />
-          <pointLight position={[10, 10, 10]} />
-          <Environment preset="studio" background={false} />
-
           <Cube size={[3, 3, 3]} transform={transform} color={cubeColor} />
           <OrbitControls
             ref={orbitControls}
