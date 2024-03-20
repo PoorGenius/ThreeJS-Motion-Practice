@@ -1,6 +1,5 @@
 import { useState, useRef } from "react"
 import { motion } from "framer-motion"
-import { Environment } from "@react-three/drei"
 
 import { Canvas } from "@react-three/fiber"
 import { OrbitControls } from "@react-three/drei"
@@ -10,9 +9,12 @@ import { slideInVariants } from "./animations/animations"
 import { SketchPicker } from 'react-color'
 import Cube from "./Cube"
 
+import Loader from "./Loader"
+
 function App() {
   const [transform, setTransform] = useState(false);
   const [cubeColor, setCubeColor] = useState('#fff');
+
   const orbitControls = useRef();
 
   const handleColorChange = (color) => {
@@ -21,6 +23,9 @@ function App() {
 
   return (
     <div className="w-full min-h-screen flex flex-col justify-center items-center">
+
+      <Loader />
+
       <motion.div
         variants={slideInVariants("left")}
         animate="visible"
@@ -42,7 +47,6 @@ function App() {
         initial="hidden"
       >
         <Canvas
-
         >
           <Cube size={[3, 3, 3]} transform={transform} color={cubeColor} />
           <OrbitControls
